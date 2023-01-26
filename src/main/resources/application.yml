@@ -1,0 +1,24 @@
+spring:
+    jpa:
+#        open-in-view: false
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        show-sql: true
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                default_schema: financing-structure
+    jackson:
+        property-naming-strategy: SNAKE_CASE
+
+    datasource:
+        url: jdbc:postgresql://localhost:5432/cooking
+        username: user
+        password: pwd
+
+server:
+    error:
+        include-stacktrace: NEVER
+    port: 8080
+
+
