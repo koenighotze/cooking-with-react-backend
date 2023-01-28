@@ -5,9 +5,9 @@ spring:
         show-sql: true
         hibernate:
             ddl-auto: update
-        properties:
-            hibernate:
-                default_schema: financing-structure
+#        properties:
+#            hibernate:
+#                default_schema: financing-structure
     jackson:
         property-naming-strategy: SNAKE_CASE
 
