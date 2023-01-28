@@ -29,7 +29,7 @@ class DbInitializer {
                 servings = 4,
                 totalTimeMinutes = 30,
                 prepTimeMinutes = 30,
-                ingredients = listOf(
+                ingredients = mutableListOf(
                     Ingredient(id = randomUUID().toString(), name = "Rote Zwiebel", amount = "2"),
                     Ingredient(id = randomUUID().toString(), name = "Karotte", amount = "600g"),
                     Ingredient(id = randomUUID().toString(), name = "Kohlrabi", amount = "2")
@@ -47,7 +47,7 @@ class DbInitializer {
                 servings = 6,
                 totalTimeMinutes = 30,
                 prepTimeMinutes = 15,
-                ingredients = listOf(
+                ingredients = mutableListOf(
                     Ingredient(id = randomUUID().toString(), name = "Hackfleisch", amount = "500g"),
                     Ingredient(id = randomUUID().toString(), name = "Zwiebeln", amount = "2"),
                     Ingredient(id = randomUUID().toString(), name = "Paprika", amount = "2"),
@@ -68,7 +68,7 @@ class DbInitializer {
                 servings = 3,
                 totalTimeMinutes = 50,
                 prepTimeMinutes = 20,
-                ingredients = listOf(
+                ingredients = mutableListOf(
                     Ingredient(id = randomUUID().toString(), name = "Wiener Würstchen", amount = "4"),
                     Ingredient(id = randomUUID().toString(), name = "Schinkenspeck", amount = "100g"),
                     Ingredient(id = randomUUID().toString(), name = "Zwiebel", amount = "3 große"),
@@ -89,7 +89,6 @@ class DbInitializer {
         } else {
             logger.info("Setting up recipes")
             recipes.forEach {
-                it.ingredients.forEach { ingredient -> ingredientRepository.save(ingredient) }
                 recipeRepository.save(it)
             }
         }
