@@ -1,0 +1,63 @@
+name: Build main
+
+on:
+  push:
+    branches: [main]
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  security-scan-code:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+#      - name: Run Snyk to check for vulnerabilities
+#        uses: snyk/actions/maven@0.3.0
+#        env:
+#          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+#       with:
+#         args: --severity-threshold=high
+      - name: Run vulnerability scanner in repo mode
+        uses: aquasecurity/trivy-action@0.8.0
+        with:
+          scan-type: "fs"
+          ignore-unfixed: false
+          format: "table"
+          exit-code: "1"
+          severity: "CRITICAL"
+
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'corretto'
+          cache: maven
+      - name: Lint
+        run: mvn ktlint:check
+      - name: Build
+        run: mvn --batch-mode --update-snapshots package
+  #      - name: Check Dockerfile
+#        uses: hadolint/hadolint-action@v3.0.0
+#        with:
+#          verbose: true
+#      - name: Check shell scripts
+#        uses: ludeeus/action-shellcheck@1.1.0
+#        with:
+#          severity: warning
+#          scandir: './scripts'
+#      - name: Upload coverage
+#        run: |
+#          bash <(curl -Ls https://coverage.codacy.com/get.sh) report --force-coverage-parser go -r coverage.out
+#        env:
+#          CODACY_PROJECT_NAME: todo
+#          CODACY_ORGANIZATION_PROVIDER: gh
+#          CODACY_USERNAME: ${{ github.repository_owner }}
+#          CODACY_API_TOKEN: ${{ secrets.CODACY_API_TOKEN }}
+
