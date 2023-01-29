@@ -2,11 +2,11 @@ version: '3.5'
 
 services:
   db:
-     image: postgres:12
+     image: postgres:15-alpine
      restart: always
      environment:
         POSTGRES_USER: user
         POSTGRES_PASSWORD: pwd
         POSTGRES_DB: cooking
      ports:
-        - 5432:5432
+        - "5432:5432"

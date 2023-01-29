@@ -21,4 +21,8 @@ server:
         include-stacktrace: NEVER
     port: 8080
 
+logging:
+    level:
+        root: WARN
+
 
