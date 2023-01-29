@@ -1,4 +1,4 @@
-package org.koenighotze.cooking
+package org.koenighotze.cooking.poc
 
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

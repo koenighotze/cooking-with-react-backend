@@ -12,6 +12,7 @@ data class AddNewRecipeRequest(
     val ingredients: List<AddNewIngredientRequest>
 )
 
+data class GetAllRecipesResponse(val recipes: List<Recipe>)
 data class AddNewRecipeResponse(val id: String)
 
 data class UpdateIngredientRequest(val name: String, val amount: String)
@@ -27,3 +28,5 @@ data class UpdateRecipeRequest(
 )
 
 data class UpdateRecipeResponse(val id: String)
+
+data class GetRecipeResponse(val recipe: Recipe?)

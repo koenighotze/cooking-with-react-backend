@@ -20,16 +20,15 @@ import java.util.UUID.randomUUID
 @RequestMapping("/recipes")
 @Transactional
 class RecipeController(val recipeRepository: RecipeRepository, val ingredientRepository: IngredientRepository) {
-    data class Recipes(val recipes: List<Recipe>)
-
     @GetMapping
-    fun getAllRecipes(): Recipes {
-        return Recipes(recipes = recipeRepository.findAll().toList())
+    fun getAllRecipes(): GetAllRecipesResponse {
+        return GetAllRecipesResponse(recipes = recipeRepository.findAll().toList())
     }
 
     @GetMapping("/{id}")
-    fun getRecipe(@PathVariable("id") id: String): Recipe {
-        return recipeRepository.findByIdOrNull(id) ?: throw ResponseStatusException(NOT_FOUND)
+    fun getRecipe(@PathVariable("id") id: String): GetRecipeResponse {
+        val recipe = recipeRepository.findByIdOrNull(id) ?: throw ResponseStatusException(NOT_FOUND)
+        return GetRecipeResponse(recipe)
     }
 
     @PostMapping

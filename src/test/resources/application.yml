@@ -1,9 +1,16 @@
-spring:
-    jpa:
-        show-sql: true
-        hibernate:
-            ddl-auto: create
+#debug: true
 
 logging:
     level:
-        root: WARN
+        root: INFO
+
+spring:
+    jpa:
+#        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        show-sql: false
+        hibernate:
+            ddl-auto: create
+#    datasource:
+#        url: jdbc:postgresql://localhost:5432/cooking
+#        username: user
+#        password: pwd
