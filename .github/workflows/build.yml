@@ -60,7 +60,7 @@ jobs:
       - download-dependencies
     steps:
       - name: Checkout
-        uses:
+        uses: actions/checkout@v3
       - name: Cache local Maven repository
         uses: actions/cache@v3
         with:
@@ -75,7 +75,7 @@ jobs:
       - download-dependencies
     steps:
       - name: Checkout
-        uses:
+        uses: actions/checkout@v3
       - name: Cache local Maven repository
         uses: actions/cache@v3
         with:
@@ -90,7 +90,7 @@ jobs:
       - download-dependencies
     steps:
       - name: Checkout
-        uses:
+        uses: actions/checkout@v3
       - name: Cache local Maven repository
         uses: actions/cache@v3
         with:
