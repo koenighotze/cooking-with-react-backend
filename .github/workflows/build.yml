@@ -21,6 +21,12 @@ jobs:
           key: ${{ runner.os }}-${{ env.CACHE_KEY }}-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-${{ env.CACHE_KEY }}-
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'corretto'
+          cache: maven
       - name: Resolve dependencies
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: |
@@ -66,6 +72,12 @@ jobs:
         with:
           path: /root/.m2/repository
           key: ${{ runner.os }}-${{ env.CACHE_KEY }}-${{ hashFiles('**/pom.xml') }}
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'corretto'
+          cache: maven
       - name: Unit Test
         run: ./mvnw -B -DskipUnitTests integration-test failsafe:verify
 
@@ -81,6 +93,12 @@ jobs:
         with:
           path: /root/.m2/repository
           key: ${{ runner.os }}-${{ env.CACHE_KEY }}-${{ hashFiles('**/pom.xml') }}
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'corretto'
+          cache: maven
       - name: Unit Test
         run: ./mvnw -B -DskipIntegrationTests test jacoco:report
 
@@ -96,6 +114,12 @@ jobs:
         with:
           path: /root/.m2/repository
           key: ${{ runner.os }}-${{ env.CACHE_KEY }}-${{ hashFiles('**/pom.xml') }}
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'corretto'
+          cache: maven
       - name: Lint Kotlin
         run: ./mvnw -B ktlint:check
 
