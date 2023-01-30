@@ -14,7 +14,7 @@ import org.testcontainers.junit.jupiter.Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Testcontainers
 @ContextConfiguration(initializers = [DbInit::class])
-class RecipeControllerTest(@Autowired val restTemplate: TestRestTemplate) {
+class RecipeControllerIT(@Autowired val restTemplate: TestRestTemplate) {
     @Test
     fun `get all recipes returns the recipe list`() {
         val response = restTemplate.getForEntity("/recipes", GetAllRecipesResponse::class.java)
