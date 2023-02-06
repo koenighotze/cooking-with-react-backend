@@ -20,6 +20,7 @@
 		<!-- libraries -->
 		<testcontainers.version>1.17.6</testcontainers.version>
 		<mockk.version>1.13.4</mockk.version>
+		<springmockk.version>4.0.0</springmockk.version>
 
 		<!-- Plugins -->
 		<jib-maven-plugin.version>3.3.1</jib-maven-plugin.version>
@@ -94,6 +95,12 @@
 			<groupId>io.mockk</groupId>
 			<artifactId>mockk-jvm</artifactId>
 			<version>${mockk.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.ninja-squad</groupId>
+			<artifactId>springmockk</artifactId>
+			<version>${springmockk.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

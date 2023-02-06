@@ -1,6 +1,7 @@
 package org.koenighotze.cooking.recipes
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.fail
 import org.junit.jupiter.api.Test
 import org.koenighotze.cooking.config.DbInit
 import org.springframework.beans.factory.annotation.Autowired
@@ -20,6 +21,12 @@ class RecipeControllerIT(@Autowired val restTemplate: TestRestTemplate) {
         val response = restTemplate.getForEntity("/recipes", GetAllRecipesResponse::class.java)
 
         assertThat(response.statusCode).isEqualTo(OK)
+        val body = response.body
+        body?.let {
+            assertThat(body.recipes).hasAtLeastOneElementOfType(Recipe::class.java)
+        } ?: run {
+            fail("Expected recipes")
+        }
     }
 
     @Test
