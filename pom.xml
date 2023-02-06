@@ -249,6 +249,23 @@
 <!--					</from>-->
 <!--				</configuration>-->
 			</plugin>
+
+			<plugin>
+				<groupId>com.github.ozsie</groupId>
+				<artifactId>detekt-maven-plugin</artifactId>
+				<version>1.22.0</version>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals><goal>check</goal></goals>
+						<configuration>
+							<plugins>
+								<config>config/detekt/detekt.yml</config>
+							</plugins>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
